@@ -1,7 +1,6 @@
 import sys
-import matplotlib.pyplot as plt
-from visualization import visulation_df
 from age_crash_analysis import age_crash_analysis
+from make_model_analysis import make_analysis, model_analysis
 
 try:
     from pyspark import SparkContext
@@ -27,19 +26,18 @@ def main():
                                      header=True)
     vehicle_crash_df = spark.read.csv(path="dataset/Traffic_Crashes_-_Vehicles.csv",
                                      header=True)
-    # print(people_crash_df.select('AGE').where(people_crash_df["AGE"].isNotNull()).count())
-    # print(crash_df.count())
-    # print(vehicle_crash_df.count())
-    # print(crash_df.join(vehicle_crash_df, crash_df['RD_NO'] == vehicle_crash_df['RD_NO']).count())
-
-    # model vs fatal
-    # crash_df.join(vehicle_crash_df, crash_df['RD_NO'] == vehicle_crash_df['RD_NO']).select('MODEL', 'INJURIES_FATAL',
-    #                                                                                        'INJURIES_TOTAL').show()
 
     # 1. accident vs age
-    # 2. number of total driver by age
-    age_crash_analysis(crash_df, people_crash_df)
+    # 2. Weighted: accident vs age
+    # age_crash_analysis(crash_df, people_crash_df)
 
+    # 3. make injury
+    # 4. Weighted: make injury
+    # make_analysis(crash_df, vehicle_crash_df)
+
+    # 5. model injury
+    # 6. Weighted: model injury
+    model_analysis(crash_df, vehicle_crash_df)
 
 
 
