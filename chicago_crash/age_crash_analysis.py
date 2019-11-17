@@ -62,7 +62,9 @@ def _age_crash(crash_df, people_crash_df, weight):
     visulation_df(df=plot_test, x_axis="_1", y_axis="_2",
                   x_label="Age", y_label="count",
                   title="Age Vs Accidents", sorting='x_axis')
-    visulation_df(df=joined_df, x_axis="_1", y_axis="weighted_column",
+
+    joined_df['_4'] = joined_df.index
+    visulation_df(df=joined_df, x_axis='_4', y_axis="weighted_column",
                   x_label="Age", y_label="weighted_count",
                   title="weighted: Age Vs Accidents", sorting='x_axis')
 
