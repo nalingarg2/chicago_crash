@@ -1,8 +1,7 @@
 import sys
-# import plotly.graph_objects as go
-# import chart_studio.plotly as py
-# import recertifi
 import matplotlib.pyplot as plt
+from visualization import visulation_df
+from age_crash_analysis import group_df
 
 try:
     from pyspark import SparkContext
@@ -15,41 +14,6 @@ try:
 except ImportError as e:
     print("Can not import Spark Modules", e)
     sys.exit(1)
-
-def group_df(word):
-    # print(int(word['AGE']), int(word['INJURIES_TOTAL']))
-    # print(type(word['AGE']), type(word['INJURIES_TOTAL']))
-    if int(word['AGE']) < 16:
-        return (15, 1)
-    elif int(word['AGE']) > 15 and int(word['AGE']) < 18:
-        return (1617, int(word['INJURIES_TOTAL']))
-
-    elif int(word['AGE']) > 17 and int(word['AGE']) < 20:
-        return (1819, int(word['INJURIES_TOTAL']))
-
-    elif int(word['AGE']) > 19 and int(word['AGE']) < 25:
-        return (2024, int(word['INJURIES_TOTAL']))
-
-    elif int(word['AGE']) > 24 and int(word['AGE']) < 30:
-        return (2529, int(word['INJURIES_TOTAL']))
-
-    elif int(word['AGE']) > 29 and int(word['AGE']) < 40:
-        return (3039, int(word['INJURIES_TOTAL']))
-
-    elif int(word['AGE']) > 39 and int(word['AGE']) < 50:
-        return (4049, int(word['INJURIES_TOTAL']))
-
-    elif int(word['AGE']) > 49 and int(word['AGE']) < 60:
-        return (5059, int(word['INJURIES_TOTAL']))
-
-    elif int(word['AGE']) > 59 and int(word['AGE']) < 70:
-        return (6069, int(word['INJURIES_TOTAL']))
-
-    elif int(word['AGE']) > 69 and int(word['AGE']) < 80:
-        return (7079, int(word['INJURIES_TOTAL']))
-
-    elif int(word['AGE']) > 79:
-        return (80100, int(word['INJURIES_TOTAL']))
 
 
 def main():
@@ -90,14 +54,9 @@ def main():
     plot_test = df.toPandas().sort_values("_1", ascending=True)
 
     # plot_test = age_vs_accident.toPandas().sort_values(by = "AGE")
-    plot_test.plot(figsize=(20, 10), kind="bar", color="red",
-                                   x="_1", y="_2", legend=False, sort_columns=True)
-    plt.xlabel("Age", fontsize=18)
-    plt.ylabel("Count", fontsize=18)
-    plt.title("Age Vs Accidents", fontsize=28)
-    plt.xticks(size=18)
-    plt.yticks(size=18)
-    plt.show()
+    visulation_df(df=plot_test, x_axis="_1", y_axis="_2",
+                  x_label="Age", y_label="count",
+                  title="Age Vs Accidents", sorting='x_axis')
 
     # data = [go.Histogram(x=age_vs_accident.toPandas()['AGE'],
     #                      y=age_vs_accident.toPandas()['INJURIES_TOTAL'])]
