@@ -51,6 +51,7 @@ def group_df(word):
     elif int(word['AGE']) > 79:
         return (80100, int(word['INJURIES_TOTAL']))
 
+
 def main():
     spark = SparkSession.\
         builder.\
