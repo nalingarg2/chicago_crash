@@ -1,6 +1,6 @@
 import sys
 from age_crash_analysis import age_crash_analysis
-from make_model_analysis import make_analysis, model_analysis
+from make_model_analysis import make_model_analysis
 
 try:
     from pyspark import SparkContext
@@ -32,12 +32,8 @@ def main():
     # age_crash_analysis(crash_df, people_crash_df)
 
     # 3. make injury
-    # 4. Weighted: make injury
-    # make_analysis(crash_df, vehicle_crash_df)
-
-    # 5. model injury
-    # 6. Weighted: model injury
-    model_analysis(crash_df, vehicle_crash_df)
+    # 4. model injury
+    make_model_analysis(crash_df, vehicle_crash_df)
 
 
 
