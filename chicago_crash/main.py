@@ -29,7 +29,7 @@ def main():
 
     # 1. accident vs age
     # 2. Weighted: accident vs age
-    # age_crash_analysis(crash_df, people_crash_df)
+    age_crash_analysis(crash_df, people_crash_df)
 
     # 3. make injury
     # 4. model injury
