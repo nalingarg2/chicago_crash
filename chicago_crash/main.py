@@ -26,6 +26,9 @@ def main():
                                      header=True)
     vehicle_crash_df = spark.read.csv(path="dataset/Traffic_Crashes_-_Vehicles.csv",
                                      header=True)
+    print("lines in people: {}".format(people_crash_df.count()))
+    print("lines in crash: {}".format(crash_df.count()))
+    print("lines in vehicle: {}".format(vehicle_crash_df.count()))
 
     # 1. accident vs age
     # 2. Weighted: accident vs age
